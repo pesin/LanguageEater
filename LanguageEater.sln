@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageEater.Lib", "LanguageEater.Lib\LanguageEater.Lib.csproj", "{53CEC364-E7F4-449C-BBC4-AF44AD4ABCC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageEater.Console", "LanguageEater.Console\LanguageEater.Console.csproj", "{40A74043-DF8B-4A0E-A77A-A1119108FC0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{53CEC364-E7F4-449C-BBC4-AF44AD4ABCC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53CEC364-E7F4-449C-BBC4-AF44AD4ABCC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53CEC364-E7F4-449C-BBC4-AF44AD4ABCC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40A74043-DF8B-4A0E-A77A-A1119108FC0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40A74043-DF8B-4A0E-A77A-A1119108FC0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40A74043-DF8B-4A0E-A77A-A1119108FC0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40A74043-DF8B-4A0E-A77A-A1119108FC0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
