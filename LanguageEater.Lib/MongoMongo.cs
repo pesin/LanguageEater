@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using LanguageEater.Lib.Models;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace LanguageEater.Lib
 {
     class MongoMongo
     {
-        private void insert5Gram(string[] ngram)
+        private void insert5Gram(FiveGram ngram)
         {
             // or use a connection string
             var client = new MongoClient("mongodb://localhost:27017");

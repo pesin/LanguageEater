@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace LanguageEater.Lib
 {
-    public class Class1
+    class LoadCorpus
     {
+
     }
 }
