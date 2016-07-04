@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,26 @@ namespace LanguageEater.Lib.Models
 
    public class FiveGram:INGram
     {
+        [BsonConstructor]
+        public FiveGram()
+        {
+            this.tokens = new List<string>();
+        }
+
+        [BsonIgnoreAttribute]
         private List<string> tokens;
+
+        [BsonDefaultValue(0)]
+        public long Count;
+
+       [BsonDefaultValue("")]
         public string L2 { get
             {
                 return this.tokens[(int)FiveGramIx.L2];
             }
         }
+
+        [BsonDefaultValue("")]
         public string L1
         {
             get
@@ -31,6 +46,7 @@ namespace LanguageEater.Lib.Models
                 return this.tokens[(int)FiveGramIx.L1];
             }
         }
+        [BsonDefaultValue("")]
         public string C
         {
             get
@@ -38,6 +54,7 @@ namespace LanguageEater.Lib.Models
                 return this.tokens[(int)FiveGramIx.C];
             }
         }
+        [BsonDefaultValue("")]
         public string R1
         {
             get
@@ -45,6 +62,7 @@ namespace LanguageEater.Lib.Models
                 return this.tokens[(int)FiveGramIx.R1];
             }
         }
+        [BsonDefaultValue("")]
         public string R2
         {
             get

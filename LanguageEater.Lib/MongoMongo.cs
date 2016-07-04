@@ -10,16 +10,22 @@ using System.Threading.Tasks;
 namespace LanguageEater.Lib
 {
     class MongoMongo
+
     {
+        private static MongoClient client = new MongoClient(System.Configuration.ConfigurationManager.ConnectionStrings["mongo"].ConnectionString);
+
         private void insert5Gram(FiveGram ngram)
         {
-            // or use a connection string
-            var client = new MongoClient("mongodb://localhost:27017");
+            
+            var database = client.GetDatabase("english5");
+            var collection = database.GetCollection<BsonDocument>("corpus");
+            var document =  BsonDocument.Create(ngram);
+            collection.InsertOneAsync(document);
+
             return;
 
-            var database = client.GetDatabase("foo");
-            var collection = database.GetCollection<BsonDocument>("bar");
-            var document = new BsonDocument
+          //  var collection = database.GetCollection<BsonDocument>("bar");
+           /* var document = new BsonDocument
             {
                 { "name", "MongoDB" },
                 { "type", "Database" },
@@ -29,10 +35,9 @@ namespace LanguageEater.Lib
                         { "x", 203 },
                         { "y", 102 }
                     }}
-            };
+            };*/
 
-            collection.InsertOneAsync(document);
-
+          
             // generate 100 documents with a counter ranging from 0 - 99
             var documents = Enumerable.Range(0, 100).Select(i => new BsonDocument("counter", i));
             //collection.InsertMany(documents);
