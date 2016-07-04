@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -30,9 +31,39 @@ namespace LanguageEater.Lib
                 if (flag)
                 {
                     //unzip
-                    //load to db
+                   string newFileName = Decompress(new FileInfo(filename));
+                    
+                    if (!string.IsNullOrEmpty(newFileName))
+                    {
+                        //load to db
+                    }
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileToDecompress"></param>
+        /// <returns></returns>
+        private static string Decompress(FileInfo fileToDecompress)
+        {
+            string newFileName = null;
+            using (FileStream originalFileStream = fileToDecompress.OpenRead())
+            {
+                string currentFileName = fileToDecompress.FullName;
+                 newFileName = currentFileName.Remove(currentFileName.Length - fileToDecompress.Extension.Length);
+
+                using (FileStream decompressedFileStream = File.Create(newFileName))
+                {
+                    using (GZipStream decompressionStream = new GZipStream(originalFileStream, CompressionMode.Decompress))
+                    {
+                        decompressionStream.CopyTo(decompressedFileStream);
+                        Console.WriteLine("Decompressed: {0}", fileToDecompress.Name);
+                    }
+                }
+            }
+            return newFileName;
         }
 
         private static bool DownloadFile(string url, string filename)
