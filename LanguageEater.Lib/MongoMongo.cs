@@ -25,7 +25,7 @@ namespace LanguageEater.Lib
             return document;
         }
 
-        private void insert5Gram(FiveGram ngram)
+        public void insert5Gram(FiveGram ngram)
         {
             
             var database = client.GetDatabase("english5");

@@ -20,7 +20,7 @@ namespace LanguageEater.Lib
         {
             XDocument doc = XDocument.Load(linksFile);
 
-            
+            MongoMongo mongo = new MongoMongo();
 
             foreach (var el in doc.Elements("a"))
             {
@@ -36,8 +36,35 @@ namespace LanguageEater.Lib
                     if (!string.IsNullOrEmpty(newFileName))
                     {
                         //load to db
+                       // mongo.insert5Gram()
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Split each like per format
+        /// ngram TAB year TAB match_count TAB volume_count NEWLINE
+        /// </summary>
+        /// <param name="fileName"></param>
+        private static void readAndLoad(string fileName)
+        {
+            var stream = File.OpenText(fileName);
+            while (!stream.EndOfStream)
+            {
+                string line = stream.ReadLine();
+                string[] tokens = line.Split('\t');
+                if (tokens.Length != 4)
+                {
+                    Console.WriteLine("error line: " + line);
+                    continue;
+                }
+
+                string ngram = tokens[0];
+                int year=0;
+                int.TryParse(tokens[1], out year);
+                long count = 0;
+                long.TryParse(tokens[2], out count);
             }
         }
 

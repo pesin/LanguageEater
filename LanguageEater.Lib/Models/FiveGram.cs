@@ -22,7 +22,22 @@ namespace LanguageEater.Lib.Models
         [BsonConstructor]
         public FiveGram()
         {
-            this.tokens = new List<string>();
+            this.tokens = new List<string>(5);
+        }
+
+        public FiveGram(string ngramText)
+        {
+            if (string.IsNullOrWhiteSpace(ngramText))
+            {
+                throw new ArgumentException("5Gram is blank", "ngramText");
+            }
+            this.tokens = new List<string>(5);
+
+            var arr = ngramText.Split(' ');
+            if (arr.Length < 5)
+            {
+                throw new ArgumentException(string.Format("5Gram doesn't split into 5 tokens: {0}", ngramText), "ngramText");
+            }
         }
 
         [BsonIgnoreAttribute]
